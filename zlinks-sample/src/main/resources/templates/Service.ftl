@@ -8,9 +8,7 @@ import com.zlinks.common.web.PageResult;
 import ${conf.entityPackage}<#if table.prefix!="">.${table.prefix}</#if>.${beanName};
 
 /**
- * Copyright (C), 2017-2020, cn.zlinks
- * FileName: ${beanName}Service
- * Author:   zhangjh
+ * Author:   ${conf.author}
  * Date:     ${.now}
  * Description:${beanName}Service接口
  */

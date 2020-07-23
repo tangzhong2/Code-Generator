@@ -23,13 +23,21 @@
 <#assign mapper = conf.daoPackage+"."+beanName+"Mapper"/>
 </#if>
 <#assign propertiesAnColumns = table.propertiesAnColumns/>
+<#assign columns = table.columns/>
 <#assign keys = propertiesAnColumns?keys/>
 <#assign primaryKey = table.primaryKey/>
 <#assign keys2 = primaryKey?keys/>
 <#assign insertPropertiesAnColumns = table.insertPropertiesAnColumns/>
 <#assign keys3 = insertPropertiesAnColumns?keys/>
 <mapper namespace="${mapper}">
-
+	
+	 <resultMap id="BaseResultMap" type="">
+	 <#list columns as column>
+	   <-- ${column.columnRemarks} -->
+       <result column="${column.columnName}" jdbcType="${column.columnType}" property="${column.propertyName}"/>
+     </#list>
+     </resultMap>
+	
 	<sql id="basicSelectSql">
 		<#list keys as key>
 		`${propertiesAnColumns["${key}"]}` AS `${key}`<#if key_has_next>,</#if>
@@ -74,27 +82,28 @@
 		;
 	</select>
 
-    <select id="selectByCondition" resultType="Integer">
-        SELECT COUNT(*)
+    <select id="selectByCondition" resultType="${bean}">
+        SELECT
+        <include refid="basicSelectSql"/>
         FROM `${tableName}`
         <include refid="basicWhereEntitySql"/>
         ;
     </select>
 
-<select id="getList" resultType="${bean}">
-    SELECT
-    <include refid="basicSelectSql"/>
-    FROM `${tableName}`
-    ;
-</select>
+	<select id="getList" resultType="${bean}">
+	    SELECT
+	    <include refid="basicSelectSql"/>
+	    FROM `${tableName}`
+	    ;
+	</select>
 
-<#--
-<select id="getListByMapCount" resultType="Integer">
-    SELECT COUNT(*)
-    FROM `${tableName}`
-    <include refid="basicWhereMapSql"/>
-    ;
-</select>
+	<#--
+	<select id="getListByMapCount" resultType="Integer">
+	    SELECT COUNT(*)
+	    FROM `${tableName}`
+	    <include refid="basicWhereMapSql"/>
+	    ;
+	</select>
 
 	<select id="getListByMap" resultType="${bean}">
 		SELECT
@@ -104,7 +113,7 @@
 		;
 	</select>-->
 
-	<update id="update">
+	<update id="updateById">
 		UPDATE `${tableName}`
 		<set>
 			<#list keys3 as key>
@@ -123,8 +132,7 @@
 	</update>
 
 	<update id="deleteById">
-		UPDATE `${tableName}`
-		SET `isDeleted`=1
+		delete `${tableName}`
 		<where>
 		<#list keys2 as key>
 			`${key}` = <@mapperEl primaryKey["${key}"]/>
@@ -132,7 +140,7 @@
 		</where>
 	</update>
 
-	<insert id="add" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO 
 		`${tableName}`
 		(<#list keys3 as key>`${insertPropertiesAnColumns["${key}"]}`<#if key_has_next>,</#if></#list>)
@@ -140,7 +148,7 @@
 		(<#list keys3 as key><@mapperEl key/><#if key_has_next>,</#if></#list>)
 	</insert>
 
-	<insert id="addList">
+	<insert id="insertList">
 		INSERT INTO
 		`${tableName}`
 		(<#list keys3 as key>`${insertPropertiesAnColumns["${key}"]}`<#if key_has_next>,</#if></#list>)

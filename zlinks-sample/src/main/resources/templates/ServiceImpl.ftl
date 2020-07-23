@@ -21,9 +21,7 @@ import java.util.Map;
 
 
 /**
- * Copyright (C), 2017-2020, cn.zlinks
- * FileName: ${beanName}ServiceImpl
- * Author:   zhangjh
+ * Author:   ${conf.author}
  * Date:     ${.now}
  * Description:${beanName}Service接口
  */

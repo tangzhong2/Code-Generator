@@ -39,6 +39,8 @@ public class Conf {
 
 
     private String basePackage;
+    
+    private String author;
 
     private String entityPackage;
     private String entity_dir;
@@ -87,7 +89,9 @@ public class Conf {
     private boolean force;// 重新生成文件
     private boolean prefix;// 表名前缀
     private boolean underline2Camel;// 是否需要将表字段转成驼峰
-
+    
+    
+    
     public static List<String> getAllModules() {
         return allModules;
     }
@@ -155,6 +159,8 @@ public class Conf {
         }
 
         String basePackage = pro.getProperty("base_package");
+        
+        String author = pro.getProperty("author");
 
         String entityPackage = pro.getProperty("entity_package");
         String entity_dir = pro.getProperty("entity_dir");
@@ -205,6 +211,7 @@ public class Conf {
         String testSuffix = pro.getProperty("test_suffix");
 
         this.setBasePackage(basePackage);
+        this.setAuthor(author);
 
         this.setEntityPackage(entityPackage);
         this.setEntity_dir(entity_dir);
@@ -533,4 +540,15 @@ public class Conf {
     public void setServiceimpl_modulename(String serviceimpl_modulename) {
         this.serviceimpl_modulename = serviceimpl_modulename;
     }
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+    
+    
+    
 }

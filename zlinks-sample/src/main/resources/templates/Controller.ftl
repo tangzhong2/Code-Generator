@@ -29,9 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 -->
 /**
- * Copyright (C), 2017-2020, cn.zlinks
- * FileName: ${beanName}Controller
- * Author:   zhangjh
+ * Author:   ${conf.author}
  * Date:     ${.now}
  * Description: 控制层
  */

@@ -59,9 +59,11 @@ public class Underline2CamelUtils {
 			// 没必要转换
 			return "";
 		} else if (StringUtils.containsNone(columnName, underlineStr)) {
+			columnName = columnName.toLowerCase();
 			// 不含下划线，仅将首字母小写
 			return StringUtils.uncapitalize(columnName);
 		} else {
+			columnName = columnName.toLowerCase();
 			// 用下划线将原始字符串分割
 			String[] columns = StringUtils.split(columnName, underlineStr);
 			StringBuilder result = new StringBuilder();

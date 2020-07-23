@@ -25,7 +25,13 @@ public class ColumnInfo implements Serializable {
 	 * 字段注释
 	 */
 	private String columnRemarks;
-
+	
+	/**
+	 * 实体类属性名称
+	 */
+	private String propertyName;
+	
+	
 	public String getColumnName() {
 		return columnName;
 	}
@@ -48,6 +54,16 @@ public class ColumnInfo implements Serializable {
 
 	public void setColumnRemarks(String columnRemarks) {
 		this.columnRemarks = columnRemarks;
+	}
+	
+	
+	
+	public String getPropertyName() {
+		return propertyName;
+	}
+
+	public void setPropertyName(String propertyName) {
+		this.propertyName = propertyName;
 	}
 
 	@Override

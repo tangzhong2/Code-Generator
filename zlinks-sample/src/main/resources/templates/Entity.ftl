@@ -2,18 +2,18 @@
 package ${conf.entityPackage}<#if table.prefix!="">.${table.prefix}</#if>;
 
 import com.alibaba.fastjson.JSON;
-import com.zlinks.common.dto.pager.PagerInfo;
+<#-- import com.zlinks.common.dto.pager.PagerInfo;  -->
+import java.io.Serializable;
 <#list table.propTypePackages as package>
 ${package}
 </#list>
 /**
-* Copyright (C), 2017-2020, cn.zlinks
-* FileName: ${table.beanName}
-* Author:   zhangjh
+* Author:   ${conf.author}
 * Date:     ${.now}
 * Description: 表名：${table.tableName},描述：${table.tableDesc}
 */
-public class ${table.beanName} extends PagerInfo  {
+<#--public class ${table.beanName} extends PagerInfo-->
+public class ${table.beanName} implements Serializable  {
 	/**
 	 * serialVersionUID
 	 */

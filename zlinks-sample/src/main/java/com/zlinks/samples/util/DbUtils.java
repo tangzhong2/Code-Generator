@@ -193,6 +193,7 @@ public class DbUtils {
 			if (underline2Camel) {
 				propertyName = Underline2CamelUtils.underline2Camel(columnName);
 			}
+			entry.setPropertyName(propertyName);
 			String propertyType = getFieldType(columnType, propTypePackages);
 			properties.put(propertyName, propertyType);
 			PropertyInfo beanInfo = new PropertyInfo();
