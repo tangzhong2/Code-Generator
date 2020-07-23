@@ -193,9 +193,9 @@ public class DbUtils {
 			if (underline2Camel) {
 				propertyName = Underline2CamelUtils.underline2Camel(columnName);
 			}
-			entry.setPropertyName(propertyName);
 			String propertyType = getFieldType(columnType, propTypePackages);
 			properties.put(propertyName, propertyType);
+			entry.setPropertyName(propertyName);
 			PropertyInfo beanInfo = new PropertyInfo();
 			beanInfo.setPropertyName(propertyName);
 			beanInfo.setPropertyType(propertyType);
@@ -240,6 +240,9 @@ public class DbUtils {
 		while (colRet.next()) {
 			columnName = colRet.getString("COLUMN_NAME");
 			columnType = colRet.getString("TYPE_NAME");
+			if("int".equals(columnType.toLowerCase())) {
+				columnType = "INTEGER";
+			}
 //			int datasize = colRet.getInt("COLUMN_SIZE");
 //			int digits = colRet.getInt("DECIMAL_DIGITS");
 //			int nullable = colRet.getInt("NULLABLE");

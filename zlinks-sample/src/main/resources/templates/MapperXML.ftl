@@ -31,9 +31,9 @@
 <#assign keys3 = insertPropertiesAnColumns?keys/>
 <mapper namespace="${mapper}">
 	
-	 <resultMap id="BaseResultMap" type="">
+	 <resultMap id="BaseResultMap" type="${bean}">
 	 <#list columns as column>
-	   <-- ${column.columnRemarks} -->
+	   <!-- ${column.columnRemarks} -->
        <result column="${column.columnName}" jdbcType="${column.columnType}" property="${column.propertyName}"/>
      </#list>
      </resultMap>
