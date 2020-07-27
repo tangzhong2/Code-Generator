@@ -33,6 +33,11 @@ public interface ${table.beanName}Mapper{
 	List<${table.beanName}> selectByCondition(${table.beanName} entity);
 	
 	/**
+     *  按照条件查询记录对应的条数
+     */
+	int selectCountByCondition(${table.beanName} entity);
+	
+	/**
      *  按照id更新
      */
 	int updateById(${table.beanName} entity);

@@ -89,6 +89,13 @@
         <include refid="basicWhereEntitySql"/>
         ;
     </select>
+    
+     <select id="selectCountByCondition" resultType="Integer">
+        SELECT COUNT(*)
+        FROM `${tableName}`
+        <include refid="basicWhereEntitySql"/>
+        ;
+    </select>
 
 	<select id="getList" resultType="${bean}">
 	    SELECT
